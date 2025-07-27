@@ -12,7 +12,11 @@ export function Header({ title, autohide = false, showTools = false, onSearch, o
 
     useEffect(() => {
         Requester.get(`/api/games`).then(games => {
-            setPlatforms(games.map(game => game.platform).filter(platform => platform));
+            setPlatforms(games
+                .map(game => game.platform)
+                .filter(platform => platform)
+                .pop({ value: "-1", title: "Без фильтра" })
+            );
         });
     }, []);
 
@@ -74,10 +78,7 @@ export function Header({ title, autohide = false, showTools = false, onSearch, o
                             { value: "done", title: "Пройденые" },
                             { value: "in progress", title: "В процессе" },
                         ]} />
-                        <Filter title={"Фильтр по платформам"} onChange={onFilterPlatformApply} options={[
-                            { value: "-1", title: "Без фильтра" },
-                            ...platforms.map(p => ({ value: p, title: p }))
-                        ]} />
+                        <Filter title={"Фильтр по платформам"} onChange={onFilterPlatformApply} options={platforms.map(p => ({ value: p, title: p }))} />
                         <fieldset className={styles.fieldset}>
                             <legend>Поиск по играм</legend>
                             <input className={styles.search} type={"text"} placeholder="Поиск" onKeyDown={onKeyDown} />
