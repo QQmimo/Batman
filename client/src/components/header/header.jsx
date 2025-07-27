@@ -14,7 +14,7 @@ export function Header({ title, autohide = false, showTools = false, onSearch, o
         Requester.get(`/api/games`).then(games => {
             games = games.map(game => game.platform)
                 .filter(platform => platform)
-                .filter((p, i, a) => a.toLowerCase().indexOf(p.toLowerCase()) === i)
+                .filter((p, i, a) => a.indexOf(p) === i)
                 .map(p => ({ value: p, title: p }));
             games = [{ value: "-1", title: "Без фильтра" }, ...games];
             setPlatforms(games);
