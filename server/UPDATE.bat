@@ -3,6 +3,7 @@ ECHO "Create backup:"
 XCOPY .\Data\* .\Backup\* /Y /E
 
 ECHO "Download files:"
+winget install --id Git.Git -e --source winget
 CALL git clone https://github.com/QQmimo/Batman.git
 
 ECHO "Download dependencies:"
