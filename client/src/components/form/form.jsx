@@ -12,11 +12,13 @@ export function Form({ id, onClose, onUpdate, className }) {
     const [message, setMessage] = useState(null);
     const [openMessage, setOpenMessage] = useState(true);
     const [blob, setBlob] = useState(null);
+    const [gameImage, setGameImage] = useState(null);
 
     useEffect(() => {
         if (id) {
             Requester.get(`/api/games(${id})`).then(g => {
                 setGame(g);
+                setGameImage(g.image);
             });
         }
     }, [id]);
@@ -27,6 +29,7 @@ export function Form({ id, onClose, onUpdate, className }) {
 
     const onImageClear = () => {
         setBlob(null);
+        setGameImage(null);
     }
 
     const onTitleChange = (e) => {
@@ -93,6 +96,10 @@ export function Form({ id, onClose, onUpdate, className }) {
         if (game?.title?.length > 0) {
             let image = null;
             if (id) {
+                if (!gameImage) {
+                    delete game.image;
+                }
+
                 if (blob) {
                     const regExp = new RegExp(/(?:data:(.*?);)+/, "gm");
                     const match = regExp.exec(blob);
@@ -102,13 +109,7 @@ export function Form({ id, onClose, onUpdate, className }) {
                         fileName: image,
                         blob: blob
                     });
-                }
-
-                if (!image?.fileName) {
-                    delete game.image;
-                }
-                else {
-                    game.image = image?.fileName;
+                    game.image = image.fileName;
                 }
 
                 await Requester.patch(`/api/games(${id})`, {
@@ -130,16 +131,13 @@ export function Form({ id, onClose, onUpdate, className }) {
                         blob: blob
                     });
 
-                    if (!image?.fileName) {
-                        delete game.image;
-                    }
-                    else {
+                    if (image?.fileName) {
                         game.image = image?.fileName;
                     }
 
                     await Requester.patch(`/api/games(${added.id})`, {
                         ...game
-                    })
+                    });
                 }
             }
             setStatus(<Window className={styles.notification} withoutCancel={true}>Изменения сохранены.</Window>);
@@ -185,7 +183,7 @@ export function Form({ id, onClose, onUpdate, className }) {
                         </div>
                     </div>
                 </div>
-                <ImagePreview onSelected={onImageChange} onClear={onImageClear} src={game?.image} />
+                <ImagePreview onSelected={onImageChange} onLoaded={onImageChange} onClear={onImageClear} src={game?.image} />
             </div>
             <div className={styles.controls}>
                 <Button text={"Удалить"} onClick={onDelete} />

@@ -93,7 +93,9 @@ server.delete("/api/games:id", async (req, res) => {
             throw new Error(`Запрос не содержит id как число.`);
         }
         const deleted = await gamesController.deleteGame(id);
-        await imagesController.deleteImage(deleted.image);
+        if (deleted.image) {
+            await imagesController.deleteImage(deleted.image);
+        }
         return res.status(200).json(deleted);
     }
     catch (er) {

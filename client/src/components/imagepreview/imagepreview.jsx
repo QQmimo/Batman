@@ -4,10 +4,16 @@ import styles from "./imagepreview.module.scss";
 export function ImagePreview({ src = null, onSelected, onClear }) {
     const [previewImage, setPreviewImage] = useState(src);
     const [isDragging, setIsDragging] = useState(false);
-    
+
     useEffect(() => {
         setPreviewImage(src);
     }, [src]);
+
+    useEffect(() => {
+        if (previewImage === null) {
+            onClear();
+        }
+    }, [previewImage]);
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -17,10 +23,6 @@ export function ImagePreview({ src = null, onSelected, onClear }) {
     };
 
     const previewFile = (file) => {
-        if (file === null) {
-            onClear();
-        }
-
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {
