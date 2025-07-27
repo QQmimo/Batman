@@ -5,7 +5,7 @@ import { ImagePreview } from "../imagepreview/imagepreview";
 import { Button } from "../button/button";
 import styles from "./form.module.scss";
 
-export function Form({ id, onClose, onUpdate, className }) {
+export function Form({ gameId, onClose, onUpdate, className }) {
     const [game, setGame] = useState({});
     const [open, setOpen] = useState(true);
     const [status, setStatus] = useState(null);
@@ -13,6 +13,7 @@ export function Form({ id, onClose, onUpdate, className }) {
     const [openMessage, setOpenMessage] = useState(true);
     const [blob, setBlob] = useState(null);
     const [gameImage, setGameImage] = useState(null);
+    const [id, setId] = useState(gameId);
 
     useEffect(() => {
         if (id) {
@@ -21,7 +22,7 @@ export function Form({ id, onClose, onUpdate, className }) {
                 setGameImage(g.image);
             });
         }
-    }, [id]);
+    }, [gameId, id]);
 
     const onImageChange = (value) => {
         setBlob(value);
@@ -139,6 +140,7 @@ export function Form({ id, onClose, onUpdate, className }) {
                         ...game
                     });
                 }
+                setId(added.id);
             }
             setStatus(<Window className={styles.notification} withoutCancel={true}>Изменения сохранены.</Window>);
             onUpdate?.(new Date());
