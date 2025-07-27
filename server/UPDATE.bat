@@ -22,4 +22,4 @@ XCOPY .\Backup\* .\Data\* /Y /E
 
 ECHO "Delete temp-files:"
 RMDIR /s /q Batman
-RMDIR /s /q install.bat
+DEL /s INSTALL.bat
