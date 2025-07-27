@@ -1,6 +1,6 @@
-**\node_modules
-\server\Data\Images\**.*
-!\server\Data\Images\default.svg
+node_modules
+server/Data/Images/*
+!server/Data/Images/default.svg
 
 # Logs
 logs

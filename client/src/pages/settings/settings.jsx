@@ -32,7 +32,7 @@ export function Settings({ filter }) {
 
     const onSelect = (id) => {
         setWindow(
-            <Form className={styles.window} id={id} onClose={onCloseWindow} onUpdate={setUpdate} />
+            <Form className={styles.window} gameId={id} onClose={onCloseWindow} onUpdate={setUpdate} />
         );
     }
 
