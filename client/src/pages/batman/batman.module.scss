@@ -1,0 +1,63 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    background: url('../images/background.png');
+    min-height: 100vh;
+    z-index: 5;
+}
+
+.scroller {
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    width: 400px;
+    position: absolute;
+    top: 241px;
+    left: 759px;
+    background: #050b0b;
+    color: #4182a2;
+    text-shadow: 0 0 8px #1f4c5f;
+    padding: 15px 25px;
+    overflow: hidden;
+    gap: 1px;
+
+    .item {
+        min-height: 19px;
+        display: flex;
+        gap: 5px;
+
+        .game {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            flex: 100;
+        }
+
+        .platform {
+            white-space: nowrap;
+            font-size: 7pt;
+            font-family: system-ui;
+            padding: 0 1px;
+            border: 1px solid;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 10px;
+        }
+    }
+}
+
+.fog {
+    position: absolute;
+    top: 259px;
+    left: 759px;
+    width: 438px;
+    height: 382px;
+    z-index: 3;
+    background: linear-gradient(360deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 100%), linear-gradient(90deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 95%, rgb(0, 0, 0) 100%)
+}
+
+.message {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

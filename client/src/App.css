@@ -1,0 +1,13 @@
+.left {
+  width: 50px;
+  align-self: flex-start;
+  flex: 1;
+  background-color: red;
+}
+
+.right {
+  width: 250px;
+  align-self: flex-end;
+  flex: 1;
+  background-color: orange;
+}

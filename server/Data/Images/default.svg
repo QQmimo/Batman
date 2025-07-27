@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1000"
+   height="567.849"
+   viewBox="0 0 1000 567.849"
+   id="svg4305"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Batman Print.svg">
+  <defs
+     id="defs4307" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="548.65573"
+     inkscape:cy="328.74491"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4310">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-484.51314)">
+    <path
+       id="path58"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="M 499.99993,1052.3621 C 224.29272,1052.3621 0,925.00654 0,768.44754 0,611.89283 224.29272,484.51292 499.99993,484.51292 775.70859,484.51292 1000,611.89283 1000,768.44754 c 0,156.559 -224.29141,283.91456 -500.00007,283.91456 l 0,0"
+       inkscape:connector-curvature="0" />
+    <path
+       id="path60"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="m 985.98239,768.44754 c 0,149.04599 -217.57826,269.89226 -485.98246,269.89226 -268.3877,0 -485.967928,-120.84627 -485.967928,-269.89226 0,-149.06605 217.580228,-269.90731 485.967928,-269.90731 268.4042,0 485.98246,120.84126 485.98246,269.90731"
+       inkscape:connector-curvature="0" />
+    <path
+       id="path62"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="m 687.10491,557.46555 c 0,0 54.6454,62.92898 13.25664,110.94365 -41.40331,48.02343 -112.59163,33.11881 -129.15393,13.24696 C 554.64533,661.78817 551.3445,532.63908 551.3445,532.63908 l -33.12459,61.26159 -36.42542,0 -33.12267,-61.26159 c 0,0 -3.30373,129.14909 -19.86312,149.01708 -16.56132,19.87185 -87.75204,34.77647 -129.15633,-13.24696 -41.38731,-48.01467 13.24402,-110.94365 13.24402,-110.94365 0,0 -253.334794,62.92898 -253.334794,206.97349 0,144.05719 175.521084,190.41999 175.521084,190.41999 -24.84293,-16.55757 -49.68398,-86.10286 6.62107,-104.30768 56.28999,-18.22191 105.97394,41.38331 105.97394,41.38331 0,0 3.12052,-33.89512 54.63133,-36.42625 67.88652,-3.31537 97.69091,117.56115 97.69091,117.56115 0,0 29.80439,-120.87652 97.69185,-117.56115 51.50939,2.53113 54.6454,36.42625 54.6454,36.42625 0,0 49.66751,-59.60522 105.97543,-41.38331 56.28855,18.20482 31.46208,87.75011 6.62103,104.30768 0,0 175.52061,-46.3628 175.52061,-190.41999 0,-144.04451 -253.34934,-206.97349 -253.34934,-206.97349"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

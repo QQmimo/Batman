@@ -1,0 +1,71 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    height: 65px;
+    padding: 10px;
+    backdrop-filter: contrast(130%) brightness(120%) blur(10px);
+    background-size: 300% 100%;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 15;
+    background-color: rgba(0, 0, 0, 0.55);
+    box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22), 0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18);
+    align-items: center;
+
+    &.hide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        transition: all 1s linear;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .title {
+        font-size: 24px;
+        color: yellow;
+        text-shadow: 0 0 4px black;
+        cursor: pointer;
+    }
+
+    .tools {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+
+        .search {
+            height: 19px;
+        }
+
+        .settings {
+            background-color: white;
+            border-radius: 11%;
+            width: 35px;
+            height: 35px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 0 0px 0px rgba(255, 255, 255, 0.15);
+            transition: all 0.5s linear;
+
+            &:hover {
+                box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.55);
+            }
+        }
+
+        .fieldset {
+            padding: 2px;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .button {
+            color: white;
+        }
+    }
+}

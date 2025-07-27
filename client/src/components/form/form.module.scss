@@ -1,0 +1,67 @@
+.form {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    .fields {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            &>* {
+                flex: 1;
+            }
+
+            .label {
+                font-weight: bold;
+            }
+
+            .option {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+    }
+
+    .image {
+        width: 250px;
+        height: 250px;
+        border: 1px dashed white;
+    }
+
+    &>* {
+        flex: 1;
+    }
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: flex-end;
+    color: black;
+}
+
+.notification {
+    width: 200px;
+    height: 50px;
+    display: flex
+;
+
+    &>* {
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.message {
+    white-space: pre;
+    text-wrap-mode: wrap;
+    margin: 0;
+}

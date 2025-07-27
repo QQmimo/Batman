@@ -1,0 +1,10 @@
+.page {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .window {
+        min-width: 450px;
+    }
+}

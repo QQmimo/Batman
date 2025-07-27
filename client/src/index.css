@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Batman';
+  src: url("/public/fonts/batmanforeveralternatecyr.ttf");
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: black;
+  font-family: 'Batman';
+  overflow: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  overflow: hidden;
+}
