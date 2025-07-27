@@ -15,7 +15,7 @@ export function Settings({ filter }) {
         const keys = Object.keys(filter);
         Requester.get(`/api/games`).then(all => {
             setGames(all
-                .filter(game => keys.length === 0 || keys.reduce((total, key) => total && game[key] == filter[key], true))
+                .filter(game => keys.length === 0 || keys.reduce((total, key) => total && game[key].toLowerCase() == filter[key].toLowerCase(), true))
                 .map(game => ({
                     id: game.id,
                     title: game.title,

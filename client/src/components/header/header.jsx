@@ -3,8 +3,8 @@ import { Icon } from "../icon/icon";
 import { Icons } from "../icon/icons";
 import { Filter } from "../filter/filter";
 import { Requester } from "../../services/requester";
-import styles from "./header.module.scss";
 import { Button } from "../button/button";
+import styles from "./header.module.scss";
 
 export function Header({ title, autohide = false, showTools = false, onSearch, onFilter, onStart }) {
     const [filter, setFilter] = useState({});
@@ -12,9 +12,9 @@ export function Header({ title, autohide = false, showTools = false, onSearch, o
 
     useEffect(() => {
         Requester.get(`/api/games`).then(games => {
-            games
-                .map(game => game.platform)
+            games = games.map(game => game.platform)
                 .filter(platform => platform)
+                .filter((p, i, a) => a.toLowerCase().indexOf(p.toLowerCase()) === i)
                 .map(p => ({ value: p, title: p }));
             games = [{ value: "-1", title: "Без фильтра" }, ...games];
             setPlatforms(games);
