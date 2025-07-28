@@ -44,6 +44,10 @@
             justify-content: center;
             align-items: center;
             height: 10px;
+
+            &:empty {
+                display: none;
+            }
         }
     }
 }
