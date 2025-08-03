@@ -85,7 +85,7 @@ export function Batman({ isStart = false, update }) {
                     Requester.get(`/api/games(${id})`).then(game => {
                         setWinner(
                             <Window withoutCancel={true} isOpen={isOpen} title={`${game.platform ? `(${game.platform}) ` : ''}${game.title}`}>
-                                <img style={{ width: "400px" }} src={game.image ?? Icons.DefaultLogo} />
+                                <img style={{ width: "400px", filter: "drop-shadow(0px 0px 24px black)" }} src={game.image ?? Icons.DefaultLogo} />
                                 <Button text={"Принять вызов"} onClick={() => apply(id)} />
                             </Window>
                         );
