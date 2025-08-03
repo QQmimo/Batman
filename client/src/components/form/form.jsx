@@ -82,7 +82,7 @@ export function Form({ gameId, onClose, onUpdate, className }) {
 
     const onDelete = () => {
         setMessage(
-            <Window title={"Удаление!"} className={styles.window} isOpen={openMessage} onClose={onCloseMessage} >
+            <Window title={"Удаление!"} className={styles.window} fogClassName={styles.fog} isOpen={openMessage} onClose={onCloseMessage} >
                 <p className={styles.message}>Будет удалена игра: {game?.title}<br />
                     Вы уверены?</p>
                 <div className={styles.controls}>
