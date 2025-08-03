@@ -3,7 +3,7 @@ import { Icon } from "../icon/icon";
 import { Icons } from "../icon/icons";
 import styles from "./window.module.scss";
 
-export function Window({ title, children, onClose, withoutCancel = false, isOpen = true, className }) {
+export function Window({ title, children, onClose, withoutCancel = false, isOpen = true, className, fogClassName }) {
     const [effect, setEffect] = useState("");
     const [open, setOpen] = useState(isOpen);
     const [close, setClose] = useState(false);
@@ -35,7 +35,7 @@ export function Window({ title, children, onClose, withoutCancel = false, isOpen
         <>
             {
                 open &&
-                <div className={styles.fog}>
+                <div className={[styles.fog, fogClassName].join(" ")}>
                     <div className={[styles.window, effect, className].join(" ")}>
                         {
                             (title || !withoutCancel) &&

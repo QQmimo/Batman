@@ -39,9 +39,13 @@
     }
 }
 
-.window {
-    background-color: rgba(255, 255, 255, 0.45);
-    color: black;
+.fog {
+    background-color: #000000c9;
+
+    .window {
+        background-color: rgba(255, 255, 255, 0.45);
+        color: black;
+    }
 }
 
 .controls {
