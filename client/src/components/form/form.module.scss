@@ -45,9 +45,11 @@
     gap: 50px;
     justify-content: flex-end;
     color: white;
+    text-shadow: 0 0 3px black;
 
     &>*:hover {
         color: black;
+        text-shadow: 0 0 3px white;
     }
 }
 
