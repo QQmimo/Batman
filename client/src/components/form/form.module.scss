@@ -44,7 +44,11 @@
     flex-direction: row;
     gap: 50px;
     justify-content: flex-end;
-    color: black;
+    color: white;
+
+    &>*:hover {
+        color: black;
+    }
 }
 
 .notification {
