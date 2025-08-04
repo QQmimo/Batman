@@ -16,7 +16,7 @@ export function Header({ title, autohide = false, showTools = false, onSearch, o
                 .filter(platform => platform)
                 .filter((p, i, a) => a.indexOf(p) === i)
                 .map(p => ({ value: p, title: p }));
-            games = [{ value: "-1", title: "Без фильтра" }, { value: "", title: "Без платформы" }, ...games];
+            games = [{ value: "-1", title: "Без фильтра" }, { value: "-2", title: "Без платформы" }, ...games];
             setPlatforms(games);
         });
     }, []);
@@ -54,6 +54,12 @@ export function Header({ title, autohide = false, showTools = false, onSearch, o
             setFilter(prevState => {
                 delete prevState.platform;
                 const result = { ...prevState };
+                return result;
+            });
+        }
+        else if (value === "-2") {
+            setFilter(prevState => {
+                const result = { ...prevState, platform: undefined };
                 return result;
             });
         }
