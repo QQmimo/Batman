@@ -15,7 +15,8 @@ export function Header({ title, autohide = false, showTools = false, onSearch, o
             games = games.map(game => game.platform)
                 .filter(platform => platform)
                 .filter((p, i, a) => a.indexOf(p) === i)
-                .map(p => ({ value: p, title: p }));
+                .map(p => ({ value: p, title: p }))
+                .sort((a, b) => a.title - b.title);
             games = [{ value: "-1", title: "Без фильтра" }, { value: "-2", title: "Без платформы" }, ...games];
             setPlatforms(games);
         });
