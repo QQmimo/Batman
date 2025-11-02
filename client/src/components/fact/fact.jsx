@@ -21,7 +21,7 @@ export function Fact({ data, showtime, onFinish }) {
 
     return (
         <div className={[styles.fact, showContent ? styles.show : styles.hidden].join(' ')}>
-            <img src={data.game.image} className={styles.image} />
+            <img src={data.game.image ?? "/images/default.svg"} className={styles.image} />
             <div className={styles.content}>
                 <div className={styles.title}>
                     <div className={styles.game}>

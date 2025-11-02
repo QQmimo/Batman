@@ -172,9 +172,14 @@ export function Form({ gameId, onClose, onUpdate, className }) {
             setGame(prev => {
                 const data = { ...prev };
                 const id = data.factsLastIndex !== undefined ? data.factsLastIndex + 1 : 0;
-                data.facts.push({ id: id, value: value });
+                if (data.facts) {
+                    data.facts.push({ id: id, value: value });
+                }
+                else {
+                    data.facts = [{ id: id, value: value }];
+                }
                 data.factsLastIndex = id;
-                data.facts = data.facts.filter((x, i, a) => a.findIndex(c => c.id === x.id) === i);
+                data.facts = (data?.facts ?? []).filter((x, i, a) => a.findIndex(c => c.id === x.id) === i);
                 return data;
             });
         }
@@ -182,7 +187,7 @@ export function Form({ gameId, onClose, onUpdate, className }) {
             setGame(prev => {
                 const data = { ...prev };
                 data.facts.find(x => x.id === id).value = value;
-                data.facts = data.facts.filter((x, i, a) => a.findIndex(c => c.id === x.id) === i);
+                data.facts = (data?.facts ?? []).filter((x, i, a) => a.findIndex(c => c.id === x.id) === i);
                 return data;
             });
         }
@@ -191,7 +196,7 @@ export function Form({ gameId, onClose, onUpdate, className }) {
     const onShowEditor = (id) => {
         setEditor(
             <Window title={id === null ? "Новый факт" : "Редактор факта"} onClose={onEditorClose}>
-                <textarea className={styles.fact} defaultValue={game.facts.find(x => x.id === id)?.value ?? ""} onBlur={(e) => updateFact(e.currentTarget.value, id)} />
+                <textarea className={styles.fact} defaultValue={(game?.facts ?? []).find(x => x.id === id)?.value ?? ""} onBlur={(e) => updateFact(e.currentTarget.value, id)} />
             </Window>
         );
     }
@@ -199,8 +204,8 @@ export function Form({ gameId, onClose, onUpdate, className }) {
     const onDeleteFact = (id) => {
         setGame(prev => {
             const data = { ...prev };
-            data.facts = data.facts.filter((x) => x.id !== id);
-            data.facts = data.facts.filter((x, i, a) => a.findIndex(c => c.id === x.id) === i);
+            data.facts = (data?.facts ?? []).filter((x) => x.id !== id);
+            data.facts = (data?.facts ?? []).filter((x, i, a) => a.findIndex(c => c.id === x.id) === i);
             return data;
         });
     }

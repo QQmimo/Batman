@@ -111,15 +111,15 @@ export function Header({ title, autohide = false, showTools = false, onSearch, o
                     && <>
                         <fieldset className={styles.fieldset}>
                             <legend>Время показа факта (сек):</legend>
-                            <input type="number" min={10} max={100} defaultValue={settings?.facts?.showtime ?? 10} onBlur={onShowtimeBlur} onKeyDown={onSettingsKeyDown} />
+                            <input type="number" min={10} max={100} defaultValue={settings?.facts?.showtime} onBlur={onShowtimeBlur} onKeyDown={onSettingsKeyDown} />
                         </fieldset>
                         <fieldset className={styles.fieldset}>
                             <legend>Время между фактами (сек):</legend>
-                            <input type="number" min={10} max={100} defaultValue={settings?.facts?.delay ?? 10} onBlur={onDelayBlur} onKeyDown={onSettingsKeyDown} />
+                            <input type="number" min={10} max={100} defaultValue={settings?.facts?.delay} onBlur={onDelayBlur} onKeyDown={onSettingsKeyDown} />
                         </fieldset>
                         <fieldset className={styles.fieldset}>
                             <legend>Дистанция:</legend>
-                            <input type="number" min={500} max={100000} defaultValue={settings?.distance ?? 500} onBlur={onDistanceBlur} onKeyDown={onSettingsKeyDown} />
+                            <input type="number" min={500} max={100000} defaultValue={settings?.distance} onBlur={onDistanceBlur} onKeyDown={onSettingsKeyDown} />
                         </fieldset>
                         <Filter title={"Фильтр по статусу"} onChange={onFilterStatusApply} options={[
                             { value: 0, title: "Без фильтра" },
