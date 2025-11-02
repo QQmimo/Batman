@@ -91,6 +91,14 @@ class BaseController {
             });
         });
     }
+
+    async updateSettings(data) {
+        return new Promise(resolve => {
+            this._Table.settings = data;
+            fs.writeFileSync(this._Path, JSON.stringify(this._Table));
+            resolve();
+        });
+    }
 }
 
 module.exports = BaseController;

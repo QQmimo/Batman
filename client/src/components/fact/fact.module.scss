@@ -1,0 +1,73 @@
+.fact {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    color: black;
+    background-color: rgb(194, 194, 194);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .22), 0 4.8px 14.4px 0 rgba(0, 0, 0, .18);
+    width: fit-content;
+    max-width: 550px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    transition: opacity .3s, filter .3s, scale .3s, left .3s linear;
+
+    .image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 110px);
+
+        .title {
+            display: flex;
+            flex-direction: row;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+            border-bottom: 2px solid gray;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+
+            .game {
+                font-size: 14pt;
+                font-weight: bold;
+                flex: 5;
+                overflow-x: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .platform {
+                padding: 2px;
+                border: 1px solid gray;
+                color: gray;
+                font-size: 11px;
+                height: fit-content;
+            }
+        }
+
+        .description {
+            font-size: 12px;
+        }
+    }
+
+    &.show {
+        opacity: 1;
+        filter: blur(0px);
+        scale: 1;
+        left: 30px;
+    }
+
+    &.hidden {
+        opacity: 0;
+        filter: blur(10px);
+        scale: 0.15;
+        left: -1000px;
+    }
+}

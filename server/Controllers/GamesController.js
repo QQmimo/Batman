@@ -9,6 +9,18 @@ class GamesController extends BaseController {
         return new Promise(resolve => resolve(this._Table));
     }
 
+    async getRandomFact() {
+        return new Promise(resolve => {
+            const games = this._Table.data.filter(row => row.facts?.length > 0);
+            const game = games.map(x => ({ ...x }))[Math.floor(Math.random() * games.length)];
+            const fact = game.facts[Math.floor(Math.random() * game.facts.length)];
+            resolve({
+                fact: fact,
+                game: game
+            });
+        });
+    }
+
     async getGame(id) {
         return this._select(id);
     }

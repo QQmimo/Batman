@@ -1,0 +1,16 @@
+.selector {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 250px;
+
+    .list {
+        width: 100%;
+    }
+
+    .controls {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+}

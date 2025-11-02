@@ -7,18 +7,22 @@ import { Button } from "../button/button";
 import styles from "./header.module.scss";
 
 export function Header({ title, autohide = false, showTools = false, onSearch, onFilter, onStart }) {
+    const [settings, setSettings] = useState(null);
     const [filter, setFilter] = useState({});
     const [platforms, setPlatforms] = useState([]);
 
     useEffect(() => {
-        Requester.get(`/api/games`).then(games => {
-            games = games.map(game => game.platform)
-                .filter(platform => platform)
-                .filter((p, i, a) => a.indexOf(p) === i)
-                .map(p => ({ value: p, title: p }))
-                .sort((a, b) => a.title - b.title);
-            games = [{ value: "-1", title: "Без фильтра" }, { value: "-2", title: "Без платформы" }, ...games];
-            setPlatforms(games);
+        Requester.get('/api/settings').then(settings => {
+            Requester.get(`/api/games`).then(games => {
+                games = games.map(game => game.platform)
+                    .filter(platform => platform)
+                    .filter((p, i, a) => a.indexOf(p) === i)
+                    .map(p => ({ value: p, title: p }))
+                    .sort((a, b) => a.title - b.title);
+                games = [{ value: "-1", title: "Без фильтра" }, { value: "-2", title: "Без платформы" }, ...games];
+                setPlatforms(games);
+                setSettings(settings);
+            });
         });
     }, []);
 
@@ -72,6 +76,30 @@ export function Header({ title, autohide = false, showTools = false, onSearch, o
         }
     }
 
+    const onSettingsKeyDown = (e) => {
+        if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+            e.currentTarget.blur();
+        }
+    }
+
+    const onDistanceBlur = (e) => {
+        const data = { ...settings };
+        data.distance = Number(e.currentTarget.value);
+        Requester.post("/api/settings", data);
+    }
+
+    const onShowtimeBlur = (e) => {
+        const data = { ...settings };
+        data.facts.showtime = Number(e.currentTarget.value);
+        Requester.post("/api/settings", data);
+    }
+
+    const onDelayBlur = (e) => {
+        const data = { ...settings };
+        data.facts.delay = Number(e.currentTarget.value);
+        Requester.post("/api/settings", data);
+    }
+
     return (
         <div className={[styles.header, autohide ? styles.hide : ""].join(" ")}>
             <div className={styles.title} onClick={() => location.href = "/"}>
@@ -81,6 +109,18 @@ export function Header({ title, autohide = false, showTools = false, onSearch, o
                 {
                     showTools
                     && <>
+                        <fieldset className={styles.fieldset}>
+                            <legend>Время показа факта (сек):</legend>
+                            <input type="number" min={10} max={100} defaultValue={settings?.facts?.showtime ?? 10} onBlur={onShowtimeBlur} onKeyDown={onSettingsKeyDown} />
+                        </fieldset>
+                        <fieldset className={styles.fieldset}>
+                            <legend>Время между фактами (сек):</legend>
+                            <input type="number" min={10} max={100} defaultValue={settings?.facts?.delay ?? 10} onBlur={onDelayBlur} onKeyDown={onSettingsKeyDown} />
+                        </fieldset>
+                        <fieldset className={styles.fieldset}>
+                            <legend>Дистанция:</legend>
+                            <input type="number" min={500} max={100000} defaultValue={settings?.distance ?? 500} onBlur={onDistanceBlur} onKeyDown={onSettingsKeyDown} />
+                        </fieldset>
                         <Filter title={"Фильтр по статусу"} onChange={onFilterStatusApply} options={[
                             { value: 0, title: "Без фильтра" },
                             { value: "done", title: "Пройденые" },

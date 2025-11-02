@@ -24,28 +24,31 @@ export function Batman({ isStart = false, update }) {
         if (start) {
             setStart(false);
             Requester.get('/api/games?status=undefined').then(data => {
-                if (data.length > 0) {
-                    const result = [];
-                    for (let i = 0; i < 1000; i++) {
-                        const x = { ...data[Math.floor(Math.random() * data.length)] };
-                        x.hid = `game_${x?.id}_${i}`;
-                        result.push(x);
-                    }
+                Requester.get('/api/settings').then(settings => {
+                    if (data.length > 0) {
+                        const result = [];
+                        for (let i = 0; i < 1000; i++) {
+                            const x = { ...data[Math.floor(Math.random() * data.length)] };
+                            x.hid = `game_${x?.id}_${i}`;
+                            result.push(x);
+                        }
 
-                    setGames(result);
-                    run();
-                }
-                else {
-                    setWinner(
-                        <Window className={styles.message} withoutCancel={true}>
-                            Нет игр для рулетки.
-                        </Window>
-                    );
-                    setTimeout(() => {
-                        setWinner(null);
-                        setIsOpen(true);
-                    }, 2500);
-                }
+                        setGames(result);
+                        run(settings.distance);
+                    }
+                    else {
+                        setWinner(
+                            <Window className={styles.message} withoutCancel={true}>
+                                Нет игр для рулетки.
+                            </Window>
+                        );
+                        setTimeout(() => {
+                            setWinner(null);
+                            setIsOpen(true);
+                        }, 2500);
+                    }
+                });
+
             });
         }
     }, [start, update]);

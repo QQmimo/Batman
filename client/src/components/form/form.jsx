@@ -3,6 +3,7 @@ import { Window } from "../window/window";
 import { Requester } from "../../services/requester";
 import { ImagePreview } from "../imagepreview/imagepreview";
 import { Button } from "../button/button";
+import { Selector } from "../selector/selector";
 import styles from "./form.module.scss";
 
 export function Form({ gameId, onClose, onUpdate, className }) {
@@ -10,6 +11,7 @@ export function Form({ gameId, onClose, onUpdate, className }) {
     const [open, setOpen] = useState(true);
     const [status, setStatus] = useState(null);
     const [message, setMessage] = useState(null);
+    const [editor, setEditor] = useState(null);
     const [openMessage, setOpenMessage] = useState(true);
     const [blob, setBlob] = useState(null);
     const [gameImage, setGameImage] = useState(null);
@@ -157,6 +159,52 @@ export function Form({ gameId, onClose, onUpdate, className }) {
         }
     }
 
+    const onEditorClose = () => {
+        setEditor(null);
+    }
+
+    const updateFact = (value, id) => {
+        if (value === null) {
+            return;
+        }
+
+        if (id === null) {
+            setGame(prev => {
+                const data = { ...prev };
+                const id = data.factsLastIndex !== undefined ? data.factsLastIndex + 1 : 0;
+                data.facts.push({ id: id, value: value });
+                data.factsLastIndex = id;
+                data.facts = data.facts.filter((x, i, a) => a.findIndex(c => c.id === x.id) === i);
+                return data;
+            });
+        }
+        else {
+            setGame(prev => {
+                const data = { ...prev };
+                data.facts.find(x => x.id === id).value = value;
+                data.facts = data.facts.filter((x, i, a) => a.findIndex(c => c.id === x.id) === i);
+                return data;
+            });
+        }
+    }
+
+    const onShowEditor = (id) => {
+        setEditor(
+            <Window title={id === null ? "Новый факт" : "Редактор факта"} onClose={onEditorClose}>
+                <textarea className={styles.fact} defaultValue={game.facts.find(x => x.id === id)?.value ?? ""} onBlur={(e) => updateFact(e.currentTarget.value, id)} />
+            </Window>
+        );
+    }
+
+    const onDeleteFact = (id) => {
+        setGame(prev => {
+            const data = { ...prev };
+            data.facts = data.facts.filter((x) => x.id !== id);
+            data.facts = data.facts.filter((x, i, a) => a.findIndex(c => c.id === x.id) === i);
+            return data;
+        });
+    }
+
     return (
         <Window className={className} title={game?.title ? game.title : "Новая игра"} onClose={onClose} isOpen={open}>
             <div className={styles.form}>
@@ -185,6 +233,7 @@ export function Form({ gameId, onClose, onUpdate, className }) {
                         </div>
                     </div>
                 </div>
+                <Selector options={(game?.facts ?? []).map(x => ({ ...x }))} onShowEditor={onShowEditor} onDelete={onDeleteFact} />
                 <ImagePreview onSelected={onImageChange} onLoaded={onImageChange} onClear={onImageClear} src={game?.image} />
             </div>
             <div className={styles.controls}>
@@ -194,6 +243,7 @@ export function Form({ gameId, onClose, onUpdate, className }) {
             </div>
             {status}
             {message}
+            {editor}
         </Window >
     );
 }

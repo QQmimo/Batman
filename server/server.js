@@ -1,6 +1,7 @@
 const express = require("express");
 const GamesController = require("./Controllers/GamesController.js");
 const ImagesController = require("./Controllers/ImagesController.js");
+const SettingsController = require("./Controllers/SettingsController.js");
 const path = require("path");
 
 const PORT = 4000;
@@ -14,6 +15,7 @@ server.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 const gamesController = new GamesController();
 const imagesController = new ImagesController();
+const settingsController = new SettingsController();
 
 server.get("/", (req, res) => {
     const root = path.join(__dirname, './public/index.html');
@@ -23,6 +25,16 @@ server.get("/", (req, res) => {
 server.get("/settings", (req, res) => {
     const root = path.join(__dirname, './public/index.html');
     return res.sendFile(root);
+});
+
+server.get("/api/fact", async (req, res) => {
+    try {
+        const game = await gamesController.getRandomFact();
+        return res.status(200).json(game);
+    }
+    catch (er) {
+        return res.status(400).json(er);
+    }
 });
 
 server.get("/api/games", async (req, res) => {
@@ -113,6 +125,25 @@ server.post("/api/saveimage", async (req, res) => {
     }
 });
 
+server.get("/api/settings", async (req, res) => {
+    try {
+        const settings = await settingsController.getSettings();
+        return res.status(200).json(settings);
+    }
+    catch (er) {
+        return res.status(404).json(er);
+    }
+});
+
+server.post("/api/settings", async (req, res) => {
+    try {
+        await settingsController.updateSettings(req.body);
+        return res.status(200).json(req.body);
+    }
+    catch (er) {
+        return res.status(400).json(er);
+    }
+});
 
 
 server.listen(PORT, () => { console.log(`Server running on: http://localhost:4000`); })

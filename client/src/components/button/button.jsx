@@ -1,9 +1,9 @@
 import { Icon } from "../icon/icon";
 import styles from "./button.module.scss";
 
-export function Button({ text, iconSrc, className, onClick }) {
+export function Button({ text, disabled, iconSrc, className, onClick }) {
     return (
-        <div className={[styles.button, className].join(" ")} onClick={onClick}>
+        <div className={[styles.button, className, disabled ? styles.disabled : null].join(" ")} onClick={onClick}>
             {
                 iconSrc &&
                 <Icon className={styles.icon} src={iconSrc} />
